@@ -1,0 +1,13 @@
+# Ignorar arquivos executáveis
+*.exe
+*.out
+*.bin
+
+# Ignorar arquivos compilados do GCC
+*.o
+*.a
+*.so
+
+main
+programa
+Makefile
