@@ -3,5 +3,5 @@
 
 void showMessageQueue()
 {
-    printf("FILA funfando!\n");
+    printf("A FILA tá funfando mesmo!\n");
 }

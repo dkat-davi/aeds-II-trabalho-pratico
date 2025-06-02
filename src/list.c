@@ -3,5 +3,5 @@
 
 void showMessageList()
 {
-    printf("LISTA funfando!\n");
+    printf("A LISTA tá funfando mesmo!\n");
 }

@@ -3,5 +3,5 @@
 
 void showMessageStack()
 {
-    printf("PILHA funfando!\n");
+    printf("A PILHA tá funfando mesmo!\n");
 }
