@@ -15,7 +15,12 @@ void showMessageStack() {
 };
 
 
-void showMessageList();
+void showMessageList() {
+    linkedList* list = lCreateLinkedList();
+    lInsertAtHead(list, 10);
+    lDisplayList(list);
+};
+
 
 int main()
 {
@@ -24,4 +29,4 @@ int main()
     showMessageList();
 
     return 0;
-}
+};
