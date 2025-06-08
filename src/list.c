@@ -6,6 +6,7 @@
 typedef struct Node {
     int data;
     struct Node* next;
+    struct Node* prev;
 } Node;
 
 
@@ -14,7 +15,7 @@ typedef struct linkedList{
 } linkedList;
 
 
-linkedList* lCreateLinkedList() {
+linkedList* createLinkedList() {
     linkedList* list = (linkedList*)malloc(sizeof(linkedList));
     list->head = NULL;
     return list;
@@ -24,8 +25,12 @@ linkedList* lCreateLinkedList() {
 void lInsertAtHead(linkedList* list, int value) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->data = value;
+    newNode->prev = NULL;
     newNode->next = list->head;
     list->head = newNode;
+    if(newNode->next){
+        newNode->next->prev = newNode;
+    }
 }
 
 
@@ -35,6 +40,7 @@ void lInsertAtTail(linkedList* list, int value) {
     newNode->next = NULL;
     if(!list->head) {
         list->head = newNode;
+        newNode->prev = NULL;
         return;
     }
     Node* current = list->head;
@@ -42,30 +48,33 @@ void lInsertAtTail(linkedList* list, int value) {
         current = current->next;
     }
     current->next = newNode;
+    newNode->prev = current;
 }
 
 
 void lRemoveElement(linkedList* list, int value) {
     if(!list->head){
-        printf("Empty Linked List.");
+        printf("Empty Linked List.\n");
         return;
     }
-    Node* current = list->head;
-    if(current->data == value) {
-        list->head = current->next;
-        free(current);
+    Node* temp = list->head;
+    if(temp->data == value) {
+        list->head = temp->next;
+        if(temp->next)
+            temp->next->prev = NULL;
+        free(temp);
         return;
     }
-    while(current->next && current->next->data != value){
-        current = current->next;
+    while(temp && temp->data != value){
+        temp = temp->next;
     }
-    if(current->next->data == value){
-            Node* temp = current->next;
-            current->next = temp->next;
-            free(temp);
-            return;
-    }
-    printf("Value %d not found.\n", value);
+    if (temp) {
+        if (temp->next)
+            temp->next->prev = temp->prev;
+        temp->prev->next = temp->next;
+        free(temp);
+    } else
+        printf("Value %d not found.\n", value);
 }
 
 
@@ -100,6 +109,6 @@ void lFreeList(linkedList* list) {
         current = current->next;
         free(temp);
     }
+    list->head = NULL;
     free(list);
 }
-
