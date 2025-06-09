@@ -56,12 +56,8 @@ int main()
         switch (opcao)
         {
         case 1:
-            printf("Quantos clientes quer inserir na fila?\n");
-            printf("Digite o nome do cliente: \n");
-            printf("Preferência? [gibi | ingresso] \n");
-
-            printf("Cliente inserido com sucesso na fila de [gibi | ingresso] \n");
-
+            mainQueue(1);
+            clearTerminal();
             break;
         case 2:
             printf("Premiar cliente de qual fila? [gibi | ingresso]\n");
