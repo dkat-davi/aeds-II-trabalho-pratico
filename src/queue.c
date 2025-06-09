@@ -1,4 +1,5 @@
 #include "../headers/queue.h"
+#include "../headers/list.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
@@ -10,7 +11,6 @@
 typedef struct {
     char name[MAX_NAME];
     char preference[MAX_PREFERENCE];
-
 } Customer;
 
 
@@ -58,13 +58,15 @@ void enqueue(Queue *q, char *name, char *preference) {
 }
 
 
-void dequeue(Queue *q) {
+Customer dequeue(Queue *q) {
+    Customer removedCustomer = {0};
     if (isEmpty(q)) {
         printf("Fila Vazia! Não é possível remover.\n");
-        return;
+        return removedCustomer;
     }
     printf("Cliente %s removido da fila de %s.\n", q->data[q->front].name, q->data[q->front].preference);
     // Move the front pointer to the next customer
+    removedCustomer = q->data[q->front];
     for (int i = 0; i < q->rear; i++) {
         q->data[i] = q->data[i + 1];
     }
@@ -75,7 +77,8 @@ void dequeue(Queue *q) {
         q->rear = -1;
     } else {
         q->front = 0; // Reset front to the first element
-    };
+    }
+    return removedCustomer;
 }
 
 void showQueue(Queue *q) {
@@ -139,6 +142,7 @@ void newCustomer(Queue *comic, Queue *ticket) {
 
 
 void rewardCustomer(Queue *comic, Queue *ticket) {
+    Customer removedCustomer;
     printf("=========================================\n");
     printf("Premiação de Clientes\n");
     printf("=========================================\n");
@@ -153,14 +157,14 @@ void rewardCustomer(Queue *comic, Queue *ticket) {
     }
     if (option == 1) {
         printf("Premiando cliente da fila de gibis...\n");
-        dequeue(comic);
+        removedCustomer = dequeue(comic);
+        mainList(2, removedCustomer.name, removedCustomer.preference);
     }
     else if (option == 2) {
         printf("Premiando cliente da fila de ingressos...\n");
-        dequeue(ticket);
+        removedCustomer = dequeue(ticket);
+        mainList(2, removedCustomer.name, removedCustomer.preference);
     }
-    // Implement here the logic to reward the customer
-    // For now, just print a message
 }
 
 

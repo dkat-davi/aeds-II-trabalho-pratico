@@ -17,7 +17,6 @@ void clearTerminal()
 
 void exibirMenu()
 {
-    printf("=========================================\n");
     printf("Escolha uma das opcoes abaixo:\n");
 
     printf("1. Adicionar clientes à fila\n");
@@ -77,11 +76,10 @@ int main()
             // Exibe a listagem com todos os clientes na fila
             break;
         case 6:
-            printf("Lista todos os ganhadores com os prêmios que ganharam: \n");
+            mainList(6, NULL, NULL);
             break;
         case 7:
-            printf("Limpa a lista de ganhadores.\n");
-            // Implementar função para retirar gibi da pilha.
+            mainList(7, NULL, NULL);
             break;
         case 8:
             printf("Saindo do programa...\n");

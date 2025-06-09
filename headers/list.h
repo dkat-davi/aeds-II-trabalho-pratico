@@ -5,11 +5,12 @@
 typedef struct linkedList linkedList;
 
 linkedList* lCreateLinkedList();
-void lInsertAtHead(linkedList* list, int value);
-void lInsertAtTail(linkedList* list, int value);
-void lRemoveElement(linkedList* list, int value);
-int lSearchElement(linkedList* list, int value);
+void lInsertAtHead(linkedList* list, char* name, char* preference);
+void lInsertAtTail(linkedList* list, char* name, char* preference);
+void lRemoveElement(linkedList* list, char* name);
 void lDisplayList(linkedList* list);
 void lFreeList(linkedList* list);
+int lSearchElement(linkedList* list, char* name);
+void mainList(int option, char* name, char* preference);
 
 #endif
