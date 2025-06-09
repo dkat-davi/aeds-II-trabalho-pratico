@@ -78,6 +78,16 @@ void dequeue(Queue *q) {
     };
 }
 
+void showQueue(Queue *q) {
+    if (isEmpty(q)) {
+        printf("Fila Vazia!\n");
+        return;
+    }
+    for (int i = q->front; i <= q->rear; i++) {
+        printf("Nome: %s, Preferência: %s\n", q->data[i].name, q->data[i].preference);
+    }
+}
+
 
 void newCustomer(Queue *comic, Queue *ticket) {
     // Funcion to add new customers to the queue
@@ -143,16 +153,40 @@ void rewardCustomer(Queue *comic, Queue *ticket) {
     }
     if (option == 1) {
         printf("Premiando cliente da fila de gibis...\n");
-        dequeue(&*comic);
+        dequeue(comic);
     }
     else if (option == 2) {
         printf("Premiando cliente da fila de ingressos...\n");
-        dequeue(&*ticket);
+        dequeue(ticket);
     }
     // Implement here the logic to reward the customer
     // For now, just print a message
 }
 
+
+void showCustomers(Queue *comic, Queue *ticket) {
+    int userOption;
+    // Function to show the customers in the user selected queue
+    printf("=========================================\n");
+    printf("Listagem de Clientes\n");
+    printf("=========================================\n");
+    printf("Escolha a fila para listar os clientes:\n");
+    printf("[1] Gibi\n");
+    printf("[2] Ingresso\n");
+    scanf("%d", &userOption);
+    while (userOption < 1 || userOption > 2) {
+        printf("Opção inválida! Escolha novamente: \n");
+        scanf("%d", &userOption);
+    }
+    printf("=========================================\n");
+    if (userOption == 1) {
+        printf("Clientes na fila de gibis:\n");
+        showQueue(comic);
+    } else if (userOption == 2) {
+        printf("Clientes na fila de ingressos:\n");
+        showQueue(ticket);
+    }
+}
 
 void mainQueue(int option) {
     if (!initialized) {
@@ -169,10 +203,9 @@ void mainQueue(int option) {
             rewardCustomer(&comic, &ticket); 
             break;
         case 3:
-            printf("Listando clientes na fila...\n");
-            // Implementar lógica para listar clientes
+            showCustomers(&comic, &ticket);
             break;
         default:
             printf("Opção inválida!\n");
     }
-}
+} 

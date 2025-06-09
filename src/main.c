@@ -63,8 +63,7 @@ int main()
             mainQueue(2);
             break;
         case 3:
-            printf("Listar clientes de qual fila? [gibi | ingresso]\n");
-            // Exibe a listagem com todos os clientes na fila
+            mainQueue(3);
             break;
         case 4:
             printf("Inserir em qual pilha? [gibi | ingresso]\n");
