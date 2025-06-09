@@ -60,8 +60,7 @@ int main()
             clearTerminal();
             break;
         case 2:
-            printf("Premiar cliente de qual fila? [gibi | ingresso]\n");
-            printf("Cliente [nome do cliente] premiado com o [gibi | ingresso]: [descrição do prêmio] \n");
+            mainQueue(2);
             break;
         case 3:
             printf("Listar clientes de qual fila? [gibi | ingresso]\n");
@@ -84,6 +83,9 @@ int main()
         case 7:
             printf("Limpa a lista de ganhadores.\n");
             // Implementar função para retirar gibi da pilha.
+            break;
+        case 8:
+            printf("Saindo do programa...\n");
             break;
         default:
             printf("Opcao invalida! Tente novamente.\n");
