@@ -74,7 +74,7 @@ O projeto está organizado em duas pastas principais:
 
 ## Logs de Execução Exemplo
 
-[Neste link]("logs.md") é possível vizualizar alguns logs gerados durante a execução do sistema.
+[Neste link](logs.md) é possível vizualizar alguns logs gerados durante a execução do sistema.
 
 Este tipo de log detalhado foi utilizado para testar todas as funcionalidades de inserção, remoção, e casos de erro, garantindo que o sistema responde corretamente às operações.
 
@@ -103,10 +103,3 @@ Recomenda-se testar exaustivamente o sistema em diferentes cenários para assegu
 
 - [Davi Kalel Andrade Teixeira](https://github.com/dkat-davi)
 - [Felipe Monteiro](https://github.com/felipe-monteiro16)
-
----
-
-## Anexos
-
-- Código-fonte comentado (disponível nas pastas `/headers` e `/src`).
-- Logs completos das execuções com testes variados.
