@@ -9,7 +9,7 @@ void initStacks(Stack *gibis, Stack *ingressos)
     gibis->top = NULL;
     ingressos->top = NULL;
 
-    printf("\nPilhas de 'gibis' e 'ingressos' inicializadas com sucesso.\n\n");
+    printf("\nLOG: Pilhas de 'gibis' e 'ingressos' inicializadas com sucesso.\n\n");
 }
 
 void selectStackAndCount(int *selectedStack, int *count)
@@ -98,4 +98,45 @@ void insertItemsToStack(Stack *stack, int count, const char *type)
     printf("\nPrêmios inseridos com sucesso na pilha de %s!\n", type);
 
     printf("=======================================================\n\n");
+}
+
+// Função para selecionar de qual pilha listar os dados
+void selectStackToList(int *selectedStack)
+{
+    printf("\n================== Selecionar Pilha =================\n");
+    printf("[0] Gibis\n");
+    printf("[1] Ingressos\n");
+    printf("Sua escolha: ");
+    scanf("%d", selectedStack);
+
+    // Validar o input do usuário
+    while (*selectedStack < 0 || *selectedStack > 1)
+    {
+        printf("Opção inválida! Escolha [0] Gibis ou [1] Ingressos: ");
+        scanf("%d", selectedStack);
+    }
+}
+
+// Função que lista os dados da pilha
+void listStack(Stack *stack, const char *type)
+{
+    if (stack->top == NULL)
+    {
+        printf("\nA pilha de %s está vazia!\n", type);
+        printf("\n=======================================================\n\n");
+        return;
+    }
+
+    printf("\n=========== Lista de Prêmios na Pilha de %s ===========\n", type);
+
+    StackNode *current = stack->top;
+    while (current != NULL)
+    {
+        printf("%s: %s\n", type, current->data.description);
+        current = current->next;
+    }
+
+    printf("\nFim da listagem.\n");
+
+    printf("\n=======================================================\n\n");
 }

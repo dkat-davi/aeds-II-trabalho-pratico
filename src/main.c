@@ -30,7 +30,7 @@ void exibirMenu()
     printf("7. Limpar lista de ganhadores\n");
 
     printf("\n8. Sair do programa\n");
-    printf("=========================================\n");
+    printf("=======================================================\n");
     printf("Digite sua opcao: ");
 }
 
@@ -42,10 +42,9 @@ int main()
     initStacks(&stackGibis, &stackIngressos);
 
     int opcao;
-
-    printf("=========================================\n");
-    printf("          Sistema de Premiacoes          \n");
-    printf("=========================================\n");
+    printf("=======================================================\n");
+    printf("                 Sistema de Premiacoes                 \n");
+    printf("=======================================================\n");
 
     do
     {
@@ -89,8 +88,21 @@ int main()
 
             break;
         case 5:
-            printf("Listar prêmios de qual pilha? [gibi | ingresso]\n");
-            // Exibe a listagem com todos os clientes na fila
+            // Variável para armazenar a escolha da pilha
+            int selectedStackToList;
+
+            // Selecionar de qual pilha listar os dados
+            selectStackToList(&selectedStackToList);
+
+            // Listar os dados da pilha correspondente
+            if (selectedStackToList == 0)
+            {
+                listStack(&stackGibis, "Gibi");
+            }
+            else
+            {
+                listStack(&stackIngressos, "Ingresso");
+            }
             break;
         case 6:
             mainList(6, NULL, NULL);
