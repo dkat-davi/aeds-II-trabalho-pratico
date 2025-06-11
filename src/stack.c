@@ -12,6 +12,7 @@ void initStacks(Stack *gibis, Stack *ingressos)
     printf("\nLOG: Pilhas de 'gibis' e 'ingressos' inicializadas com sucesso.\n\n");
 }
 
+// Função para selecionar em qual pilha e quantos dados serão inseridos nela
 void selectStackAndCount(int *selectedStack, int *count)
 {
     printf("\n===== Em qual pilha desejar adicionar os prêmios? =====\n");
@@ -70,6 +71,7 @@ void pushToStack(Stack *stack, const char *type, const char *description)
     stack->top = newNode;
 }
 
+// Função que irá gerar um loop para o usuário inserir vários prêmios na pilha
 void insertItemsToStack(Stack *stack, int count, const char *type)
 {
     for (int i = 0; i < count; i++)
@@ -139,4 +141,41 @@ void listStack(Stack *stack, const char *type)
     printf("\nFim da listagem.\n");
 
     printf("\n=======================================================\n\n");
+}
+
+// Função para verificar se a pilha contém prêmios
+int isStackEmpty(const Stack *stack)
+{
+    return (stack->top == NULL);
+}
+
+// Função para remover um prêmio do topo da pilha e retornar sua descrição
+char *popFromStack(Stack *stack)
+{
+    if (stack->top == NULL)
+    {
+        printf("\nA pilha está vazia! Nenhum prêmio para remover.\n");
+        return NULL;
+    }
+
+    // Armazena o nó do topo
+    StackNode *temp = stack->top;
+
+    // Copia a descrição do prêmio para uma string dinâmica
+    char *removedDescription = malloc(strlen(temp->data.description) + 1);
+    if (removedDescription == NULL)
+    {
+        printf("Erro ao alocar memória para a descrição removida.\n");
+        return NULL;
+    }
+    strcpy(removedDescription, temp->data.description);
+
+    // Atualiza o topo para o próximo nó
+    stack->top = stack->top->next;
+
+    // Libera a memória do nó removido
+    free(temp);
+
+    printf("\nPrêmio removido com sucesso!\n");
+    return removedDescription;
 }

@@ -39,4 +39,10 @@ void selectStackToList(int *selectedStack);
 // Definição da função que vai listar os dados da pilha
 void listStack(Stack *stack, const char *type);
 
+// Definição da função para validar se a pilha tem tem prêmios
+int isStackEmpty(const Stack *stack);
+
+// Definição da função para remover prêmio da pilha
+char *popFromStack(Stack *stack);
+
 #endif
