@@ -1,6 +1,7 @@
 #include "../headers/queue.h"
 #include "../headers/stack.h"
 #include "../headers/list.h"
+#include "../headers/main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -15,10 +16,22 @@ void clearTerminal()
 #endif
 }
 
+
+void pressEnter() {
+    printf("\n\nPressione Enter para continuar...");
+    while (getchar() != '\n');
+    getchar();
+    clearTerminal();
+
+}
+
+
 void exibirMenu()
 {
+    printf("=======================================================\n");
+    printf("                 Sistema de Premiacoes                 \n");
+    printf("=======================================================\n");
     printf("Escolha uma das opcoes abaixo:\n");
-
     printf("1. Adicionar clientes à fila\n");
     printf("2. Premiar cliente\n");
     printf("3. Listar clientes na fila\n");
@@ -42,9 +55,6 @@ int main()
     initStacks(&stackGibis, &stackIngressos);
 
     int opcao;
-    printf("=======================================================\n");
-    printf("                 Sistema de Premiacoes                 \n");
-    printf("=======================================================\n");
 
     do
     {
@@ -60,13 +70,15 @@ int main()
         {
         case 1:
             mainQueue(1);
-            clearTerminal();
+            pressEnter();
             break;
         case 2:
             mainQueue(2);
+            pressEnter();
             break;
         case 3:
             mainQueue(3);
+            pressEnter();
             break;
         case 4:
             // Variáveis que armazenam em qual pilha o usuário vai inserir os prêmios e quantos prêmios ele vai inserir
@@ -85,7 +97,7 @@ int main()
                 printf("\n================== Pilha de ingressos =================\n");
                 insertItemsToStack(&stackIngressos, count, "ingresso");
             }
-
+            pressEnter();
             break;
         case 5:
             // Variável para armazenar a escolha da pilha
@@ -103,18 +115,22 @@ int main()
             {
                 listStack(&stackIngressos, "Ingresso");
             }
+            pressEnter();
             break;
         case 6:
             mainList(6, NULL, NULL);
+            pressEnter();
             break;
         case 7:
             mainList(7, NULL, NULL);
+            pressEnter();
             break;
         case 8:
             printf("Saindo do programa...\n");
             break;
         default:
             printf("Opcao invalida! Tente novamente.\n");
+            pressEnter();
         }
     } while (opcao != 8);
 

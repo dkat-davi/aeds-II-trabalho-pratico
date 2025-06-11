@@ -1,5 +1,6 @@
 #include "../headers/queue.h"
 #include "../headers/list.h"
+#include "../headers/main.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
@@ -54,7 +55,6 @@ void enqueue(Queue *q, char *name, char *preference) {
     q->rear++;
     strcpy(q->data[q->rear].name, name);
     strcpy(q->data[q->rear].preference, preference);
-    printf("Adicionado com Sucesso!\n");
 }
 
 
@@ -106,7 +106,7 @@ void newCustomer(Queue *comic, Queue *ticket) {
             printf("Número máximo de clientes atingido!\n");
             break;
         }
-        printf("=========================================\n");
+        printf("\n=========================================\n");
         printf("Cliente %d\n", i + 1);
         printf("=========================================\n");
 
@@ -129,15 +129,16 @@ void newCustomer(Queue *comic, Queue *ticket) {
         if (option == 1) {
             strcpy(preference, "gibi");
             enqueue(comic, name, preference);
-            printf("Cliente inserido com sucesso na fila de gibis.\n");
+            printf("\nCliente inserido com sucesso na fila de gibis.\n");
         } else if (option == 2) {
             strcpy(preference, "ingresso");
             enqueue(ticket, name, preference);
-            printf("Cliente inserido com sucesso na fila de ingressos.\n");
+            printf("\nCliente inserido com sucesso na fila de ingressos.\n");
         }
 
     }
     printf("Todos os clientes foram inseridos na fila.\n");
+    printf("=========================================\n");
 }
 
 
@@ -158,7 +159,8 @@ void rewardCustomer(Queue *comic, Queue *ticket) {
     if (option == 1) {
         printf("Premiando cliente da fila de gibis...\n");
         removedCustomer = dequeue(comic);
-        mainList(2, removedCustomer.name, removedCustomer.preference);
+        if (removedCustomer.name[0] != '\0')
+            mainList(2, removedCustomer.name, removedCustomer.preference);
     }
     else if (option == 2) {
         printf("Premiando cliente da fila de ingressos...\n");
@@ -212,4 +214,4 @@ void mainQueue(int option) {
         default:
             printf("Opção inválida!\n");
     }
-} 
+}

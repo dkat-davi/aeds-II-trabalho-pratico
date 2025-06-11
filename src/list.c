@@ -1,4 +1,5 @@
 #include "../headers/list.h"
+#include "../headers/main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -131,9 +132,6 @@ void addCustomer(linkedList* list, char* name, char* preference) {
     } else {
         lInsertAtTail(list, name, preference);
     }
-    printf("=========================================\n");
-    printf("          Adicionar Cliente              \n");
-    printf("=========================================\n");
     printf("Cliente %s adicionado com sucesso à lista.\n", name);
 }
 
