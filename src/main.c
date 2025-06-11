@@ -36,6 +36,11 @@ void exibirMenu()
 
 int main()
 {
+    Stack stackGibis, stackIngressos;
+
+    // Inicializando as pilhas
+    initStacks(&stackGibis, &stackIngressos);
+
     int opcao;
 
     printf("=========================================\n");
@@ -49,7 +54,7 @@ int main()
 
         clearTerminal();
         printf("\nProcessando...\n");
-        sleep(1);
+        sleep(0.5);
         clearTerminal();
 
         switch (opcao)
@@ -65,10 +70,22 @@ int main()
             mainQueue(3);
             break;
         case 4:
-            printf("Inserir em qual pilha? [gibi | ingresso]\n");
-            printf("Dados do prêmio?\n");
+            // Variáveis que armazenam em qual pilha o usuário vai inserir os prêmios e quantos prêmios ele vai inserir
+            int selectedStack, count;
 
-            printf("Prêmio inserido com sucesso na prilha de [gibi | ingresso] \n");
+            // Função que vai possibilitar o usuário selecionar a pilha e quantidade de prêmios
+            selectStackAndCount(&selectedStack, &count);
+
+            if (selectedStack == 0)
+            {
+                printf("\n==================== Pilha de gibis ===================\n");
+                insertItemsToStack(&stackGibis, count, "gibi");
+            }
+            else
+            {
+                printf("\n================== Pilha de ingressos =================\n");
+                insertItemsToStack(&stackIngressos, count, "ingresso");
+            }
 
             break;
         case 5:
