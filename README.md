@@ -1,111 +1,112 @@
-# Trabalho Prático: Listas, Filas e Pilhas
-
-## Resumo
-
-Este trabalho consiste em implementar uma solução para a distribuição de gibis e ingressos de cinema em um shopping center. A solução inclui:
-
-- **Lista Duplamente Encadeada**: Para registrar os ganhadores de prêmios.
-- **Filas Estáticas**: Para gerenciar os clientes em espera.
-- **Pilhas Dinâmicas**: Para armazenar gibis e ingressos.
-
-A entrega inclui o código-fonte comentado, um relatório detalhado e logs de execução que demonstram o funcionamento correto do sistema.
-
-## Estruturas Utilizadas
-
-### Lista Duplamente Encadeada
-
-- **Função**: Armazenar os nomes dos ganhadores de prêmios.
-- **Implementação**: Alocação dinâmica de memória.
-- **Operações**:
-  - Inserção no início/fim.
-  - Remoção.
-  - Impressão dos nomes de todos os ganhadores.
-
-### Filas Estáticas
-
-- **Função**: Gerenciar os clientes em espera.
-- **Implementação**: Alocação estática de memória.
-- **Operações**:
-  - Inserção.
-  - Remoção.
-  - Verificação de estado (vazia/cheia).
-
-### Pilhas Dinâmicas
-
-- **Função**: Armazenar gibis e ingressos.
-- **Implementação**: Alocação dinâmica de memória.
-- **Operações**:
-  - Empilhar (push).
-  - Desempilhar (pop).
-  - Verificação de estado (vazia).
-
-## Requisitos
-
-1. Registrar ganhadores em uma lista duplamente encadeada.
-2. Gerenciar duas filas de clientes de forma independente.
-3. Gerenciar duas pilhas (gibis e ingressos) para distribuição de prêmios.
-4. Exibir, a qualquer momento, a lista de ganhadores.
-5. Executar testes exaustivos para cobrir situações como:
-   - Pilha cheia.
-   - Fila vazia.
-   - Operações simultâneas nas filas e pilhas.
-
-## Organização do Código
-
-O código será dividido em três módulos principais:
-
-1. **Lista**: Implementação da lista duplamente encadeada.
-2. **Fila**: Implementação das filas estáticas.
-3. **Pilha**: Implementação das pilhas dinâmicas.
-
-## Logs de Execução
-
-Exemplo de log:
-
-```
-=======================================================================
-Inicio da execucao: programa que implementa lista duplamente encadeada.
-=======================================================================
-Inicializei a lista de ganhadores.
-Inseri ganhador: João
-Inseri ganhador: Maria
-Lista atual: [João, Maria]
-Removi ganhador: João
-Lista atual: [Maria]
-=======================================================================
-Inicio da execucao: programa que implementa filas e pilhas.
-=======================================================================
-Inicializei as filas de clientes.
-Fila de gibis: [Ana, Pedro]
-Fila de ingressos: [Lucas, Carla]
-Empilhei gibis: Batman, Superman
-Empilhei ingressos: Vingadores, Avatar
-Distribuí prêmio: Ana ganhou Batman
-Distribuí prêmio: Lucas ganhou Vingadores
-Filas e pilhas atualizadas.
-```
-
-## Relatório
-
-O relatório incluirá:
-
-- Diagrama das estruturas.
-- Detalhes de implementação (com ilustrações).
-- Análise de desempenho.
-- Conclusões e dificuldades encontradas.
-
-## Instruções para Execução
-
-1. Compile o código utilizando um compilador de sua preferência (ex: GCC para C/C++).
-2. Execute o programa e siga as instruções no terminal para adicionar clientes, empilhar prêmios e distribuir os prêmios.
-
-## Conclusão
-
-Este trabalho visa explorar conceitos fundamentais de estrutura de dados, proporcionando uma aplicação prática para listas, filas e pilhas. Certifique-se de testar exaustivamente o sistema para garantir seu funcionamento correto em diversas situações.
+# Relatório do Trabalho Prático: Listas, Filas e Pilhas
 
 ---
 
-**Autores**:
+## Introdução
+
+Este trabalho prático teve como objetivo implementar e explorar estruturas de dados fundamentais: listas ligadas, filas e pilhas. O sistema desenvolvido permite ao usuário interagir por meio de um menu para manipular essas estruturas, incluindo inserção, remoção, listagem e gerenciamento de dados associados a clientes e prêmios.
+
+---
+
+## Estrutura do Projeto
+
+O projeto está organizado em duas pastas principais:
+
+- `/headers` — Contém os arquivos header (`.h`) com as definições das funções e estruturas para cada tipo de dado (lista, fila e pilha).
+- `/src` — Contém o código-fonte principal, incluindo a lógica das estruturas e o arquivo `main.c` que coordena a execução e interação do usuário.
+
+### Organização dos Arquivos
+
+| Arquivo   | Função                                                                |
+| --------- | --------------------------------------------------------------------- |
+| `list.h`  | Definição da lista ligada e suas operações                            |
+| `queue.h` | Definição do menu e operações da fila                                 |
+| `stack.h` | Definição da pilha, itens e operações associadas                      |
+| `main.c`  | Controle do fluxo do programa, exibição do menu e chamadas principais |
+
+---
+
+## Detalhamento das Estruturas de Dados
+
+### Lista Ligada (`list.h`)
+
+- Estrutura do tipo `linkedList`.
+- Suporte para:
+  - Criação da lista.
+  - Inserção no início e no fim.
+  - Remoção de elementos pelo nome.
+  - Busca por elemento.
+  - Exibição da lista completa.
+  - Liberação da memória.
+- Função central `mainList` para orquestrar operações.
+
+### Fila (`queue.h`)
+
+- Interface básica para manipulação da fila.
+- Função `mainQueue` que controla as operações de inserção, remoção e listagem da fila de clientes.
+
+### Pilha (`stack.h`)
+
+- Implementação com nós encadeados (`StackNode`).
+- Dois tipos de pilha:
+  - Pilha de gibis.
+  - Pilha de ingressos.
+- Estrutura para armazenar o tipo e descrição do item.
+- Funções para:
+  - Inicializar pilhas.
+  - Inserir itens.
+  - Selecionar pilha e quantidade para inserção.
+  - Listar itens da pilha.
+  - Remover itens (desempilhar).
+  - Validar se a pilha está vazia.
+
+---
+
+## Fluxo do Programa (`main.c`)
+
+- Exibição do menu de opções para o usuário.
+- Uso de `switch` para tratar as opções escolhidas.
+- Chamada das funções principais para filas, listas e pilhas.
+- Limpeza do terminal e pausas para melhor experiência visual.
+- Implementação para permitir inserção de clientes na fila, premiação, listagem, gerenciamento de pilhas de prêmios, e exibição e limpeza da lista de ganhadores.
+
+---
+
+## Logs de Execução Exemplo
+
+[Neste link]("logs.md") é possível vizualizar alguns logs gerados durante a execução do sistema.
+
+Este tipo de log detalhado foi utilizado para testar todas as funcionalidades de inserção, remoção, e casos de erro, garantindo que o sistema responde corretamente às operações.
+
+---
+
+## Resultados Obtidos
+
+- Implementação funcional e testada de:
+  - Lista ligada com inserção, remoção e busca.
+  - Fila de clientes com inserção e remoção.
+  - Pilhas com tipos diferenciados para gerenciamento de prêmios.
+- Interface de usuário via terminal que permite manipulação fácil das estruturas.
+- Separação clara de responsabilidades entre arquivos e funções, facilitando manutenção e extensão futura.
+
+---
+
+## Conclusão
+
+Este trabalho prático permitiu aplicar conceitos teóricos de estruturas de dados em um programa funcional e interativo. A divisão modular do código, uso de estruturas dinâmicas, e implementação dos métodos garantem um sistema robusto para gerenciamento de clientes e prêmios.
+
+Recomenda-se testar exaustivamente o sistema em diferentes cenários para assegurar a integridade e corretude das operações.
+
+---
+
+## Autores
 
 - [Davi Kalel Andrade Teixeira](https://github.com/dkat-davi)
 - [Felipe Monteiro](https://github.com/felipe-monteiro16)
+
+---
+
+## Anexos
+
+- Código-fonte comentado (disponível nas pastas `/headers` e `/src`).
+- Logs completos das execuções com testes variados.
