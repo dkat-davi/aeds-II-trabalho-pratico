@@ -101,6 +101,10 @@ int lSearchElement(linkedList* list, char* name) {
 
 
 void lDisplayList(linkedList* list) {
+    if (!list) {
+        printf("Lista não inicializada.\n");
+        return;
+    }
     Node* current = list->head;
     if (!current) {
         printf("Lista vazia.\n");
@@ -110,11 +114,14 @@ void lDisplayList(linkedList* list) {
         printf("Nome: %s, Preferência: %s\n", current->name, current->preference);
         current = current->next;
     }
-    printf("\n");
 }
 
 
-void lFreeList(linkedList* list) {
+linkedList* lFreeList(linkedList* list) {
+    if (list == NULL) {
+        printf("Erro: Lista nula.\n");
+        return NULL;
+    }
     Node* current = list->head;
     while(current) {
         Node* temp = current;
@@ -123,6 +130,8 @@ void lFreeList(linkedList* list) {
     }
     list->head = NULL;
     free(list);
+    list = NULL;
+    return list;
 }
 
 
@@ -157,7 +166,7 @@ void mainList(int option, char* name, char* preference) {
             displayWinners(list);
             break;
         case 7:
-            lFreeList(list);
+            list = lFreeList(list);
             printf("Lista de ganhadores limpa com sucesso.\n");
             break;
         default:
