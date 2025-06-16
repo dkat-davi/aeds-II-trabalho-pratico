@@ -3,22 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX_CUSTOMERS 5       // Define o tamanho máximo da fila
-#define MAX_NAME 20      // Define o tamanho do nome
-#define MAX_PREFERENCE 10 // Define o tamanho da preferência
-
-
-typedef struct Node {
-    char name[MAX_NAME];
-    char preference[MAX_PREFERENCE];
-    struct Node* next;
-    struct Node* prev;
-} Node;
-
-
-typedef struct linkedList{
-    Node* head;
-} linkedList;
 
 
 linkedList* createLinkedList() {
@@ -150,27 +134,4 @@ void displayWinners(linkedList* list) {
     printf("          Lista de Ganhadores          \n");
     printf("=========================================\n");
     lDisplayList(list);
-}
-
-
-void mainList(int option, char* name, char* preference) {
-    static linkedList* list = NULL;
-    if (list == NULL) {
-        list = createLinkedList();
-    }
-    switch(option) {
-        case 2:  
-            addCustomer(list, name, preference);
-            break;
-        case 6:
-            displayWinners(list);
-            break;
-        case 7:
-            list = lFreeList(list);
-            printf("Lista de ganhadores limpa com sucesso.\n");
-            break;
-        default:
-            printf("Opção inválida! Tente novamente.\n");
-            break;
-    }
 }

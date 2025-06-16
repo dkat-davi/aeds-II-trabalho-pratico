@@ -52,13 +52,20 @@ int main()
 {
     Stack stackGibis, stackIngressos;
     Queue queueGibis, queueIngressos;
-    
+    linkedList* list = NULL;
+
+
     // Inicializando as pilhas
     initStacks(&stackGibis, &stackIngressos);
 
     // Inicializando as filas
     initQueue(&queueGibis);
     initQueue(&queueIngressos);
+
+    // Inicializando a lista
+    if (list == NULL) {
+        list = createLinkedList();
+    }
 
     int opcao;
 
@@ -85,7 +92,7 @@ int main()
                 printf("Premiando cliente: %s com o prêmio: %s\n", removedCustomer.name, popFromStack(&stackGibis));
             else if (strcmp(removedCustomer.preference, "ingresso") == 0)
                 printf("Premiando cliente: %s com o prêmio: %s\n", removedCustomer.name, popFromStack(&stackIngressos));
-            mainList(2, removedCustomer.name, removedCustomer.preference);
+            addCustomer(list, removedCustomer.name, removedCustomer.preference);
             pressEnter();
             break;
         case 3:
@@ -130,11 +137,12 @@ int main()
             pressEnter();
             break;
         case 6:
-            mainList(6, NULL, NULL);
+            displayWinners(list);
             pressEnter();
             break;
         case 7:
-            mainList(7, NULL, NULL);
+            list = lFreeList(list);
+            printf("Lista de ganhadores limpa com sucesso.\n");
             pressEnter();
             break;
         case 8:
