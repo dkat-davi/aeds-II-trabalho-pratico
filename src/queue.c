@@ -9,25 +9,6 @@
 #define MAX_NAME 20      // Define o tamanho do nome
 #define MAX_PREFERENCE 10 // Define o tamanho da preferência
 
-typedef struct {
-    char name[MAX_NAME];
-    char preference[MAX_PREFERENCE];
-} Customer;
-
-
-typedef struct {
-    Customer data[MAX_CUSTOMERS];
-    int front;
-    int rear;
-} Queue;
-
-
-// Global variables for the queues
-static Queue comic;
-static Queue ticket;
-static bool initialized = false;
-
-
 void initQueue(Queue *q) {
     q->front = -1;
     q->rear = -1;
@@ -192,27 +173,5 @@ void showCustomers(Queue *comic, Queue *ticket) {
     } else if (userOption == 2) {
         printf("Clientes na fila de ingressos:\n");
         showQueue(ticket);
-    }
-}
-
-void mainQueue(int option) {
-    if (!initialized) {
-        initQueue(&comic);
-        initQueue(&ticket);
-        initialized = true;
-    }
-
-    switch (option) {
-        case 1:
-            newCustomer(&comic, &ticket);
-            break;
-        case 2:
-            rewardCustomer(&comic, &ticket); 
-            break;
-        case 3:
-            showCustomers(&comic, &ticket);
-            break;
-        default:
-            printf("Opção inválida!\n");
     }
 }

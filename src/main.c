@@ -50,12 +50,18 @@ void exibirMenu()
 int main()
 {
     Stack stackGibis, stackIngressos;
-
+    Queue queueGibis, queueIngressos;
+    
     // Inicializando as pilhas
     initStacks(&stackGibis, &stackIngressos);
 
+    // Inicializando as filas
+    initQueue(&queueGibis);
+    initQueue(&queueIngressos);
+
     int opcao;
 
+    // Loop principal do programa
     do
     {
         exibirMenu();
@@ -69,15 +75,15 @@ int main()
         switch (opcao)
         {
         case 1:
-            mainQueue(1);
+            newCustomer(&queueGibis, &queueIngressos);
             pressEnter();
             break;
         case 2:
-            mainQueue(2);
+            rewardCustomer(&queueGibis, &queueIngressos);
             pressEnter();
             break;
         case 3:
-            mainQueue(3);
+            showCustomers(&queueGibis, &queueIngressos);
             pressEnter();
             break;
         case 4:
