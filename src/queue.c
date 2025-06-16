@@ -123,7 +123,7 @@ void newCustomer(Queue *comic, Queue *ticket) {
 }
 
 
-void rewardCustomer(Queue *comic, Queue *ticket) {
+Customer rewardCustomer(Queue *comic, Queue *ticket) {
     Customer removedCustomer;
     printf("=========================================\n");
     printf("Premiação de Clientes\n");
@@ -140,15 +140,12 @@ void rewardCustomer(Queue *comic, Queue *ticket) {
     if (option == 1) {
         printf("Premiando cliente da fila de gibis...\n");
         removedCustomer = dequeue(comic);
-        if (removedCustomer.name[0] != '\0')
-            mainList(2, removedCustomer.name, removedCustomer.preference);
     }
     else if (option == 2) {
         printf("Premiando cliente da fila de ingressos...\n");
         removedCustomer = dequeue(ticket);
-        if (removedCustomer.name[0] != '\0')
-            mainList(2, removedCustomer.name, removedCustomer.preference);
     }
+    return removedCustomer;
 }
 
 

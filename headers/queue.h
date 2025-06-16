@@ -28,7 +28,7 @@ void showQueue(Queue *q);
 
 // Funções de interface com o sistema
 void newCustomer(Queue *comic, Queue *ticket);
-void rewardCustomer(Queue *comic, Queue *ticket);
+Customer rewardCustomer(Queue *comic, Queue *ticket);
 void showCustomers(Queue *comic, Queue *ticket);
 
 #endif

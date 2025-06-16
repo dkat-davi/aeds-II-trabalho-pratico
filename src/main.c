@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 void clearTerminal()
 {
@@ -79,7 +80,12 @@ int main()
             pressEnter();
             break;
         case 2:
-            rewardCustomer(&queueGibis, &queueIngressos);
+            Customer removedCustomer = rewardCustomer(&queueGibis, &queueIngressos);
+            if (strcmp(removedCustomer.preference, "gibi") == 0)
+                printf("Premiando cliente: %s com o prêmio: %s\n", removedCustomer.name, popFromStack(&stackGibis));
+            else if (strcmp(removedCustomer.preference, "ingresso") == 0)
+                printf("Premiando cliente: %s com o prêmio: %s\n", removedCustomer.name, popFromStack(&stackIngressos));
+            mainList(2, removedCustomer.name, removedCustomer.preference);
             pressEnter();
             break;
         case 3:
