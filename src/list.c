@@ -113,8 +113,8 @@ linkedList* lFreeList(linkedList* list) {
         free(temp);
     }
     list->head = NULL;
-    free(list);
-    list = NULL;
+    //free(list);
+    //list = NULL;
     return list;
 }
 
